@@ -25,6 +25,7 @@ class CreQQ:
       self.timestamp = int(min) * 60
       self.timestamp += float(sec)
       self.timestamp *= 1000
+      self.timestamp = int(self.timestamp)
   
   class Metadata:
     def __init__(self, raw):
