@@ -11,28 +11,44 @@ class CreQQ:
       self.album = parsed['albumname']
       self.artist = parsed['singer'][0]['name']
     
-    def get_lyrics(self):
+    def get_metadata(self):
       h = { 'Referer': 'y.qq.com/portal/player.html' }
       res = requests.get('https://c.y.qq.com/lyric/fcgi-bin/fcg_query_lyric_new.fcg?songmid=' + self.id + '&g_tk=5381', headers=h)
       text = res.text
       parsed = json.loads(text[18:len(text) - 1])
-      return CreQQ.Lyrics(base64.b64decode(str.encode(parsed['lyric'])).decode('utf-8'))
+      return CreQQ.Metadata(base64.b64decode(str.encode(parsed['lyric'])).decode('utf-8'))
   
-  class Lyrics:
+  class Lyric:
+    def __init__(self, min, sec, line):
+      self.raw = f'[{min}:{sec}]'
+      self.text = line
+      self.timestamp = int(min) * 60
+      self.timestamp += float(sec)
+      self.timestamp *= 1000
+  
+  class Metadata:
     def __init__(self, raw):
       self.raw = raw
       self.entries = []
       self.title = None
       self.artist = None
       self.album = None
+      self.lyrics = []
       lines = raw.split('\n')
       for line in lines:
         entry = self._entry(line)
         entype = self._entype(entry[0])
         enval = self._enval(entry[0])
-        print(entype)
         if entype == 'ti':
-          pass
+          self.title = enval
+        elif entype == 'al':
+          self.album = enval
+        elif entype == 'ar':
+          self.artist = enval
+        elif entype == 'offset':
+          self.offset = float(enval)
+        elif entype.isnumeric():
+          self.lyrics.append(CreQQ.Lyric(entype, enval, entry[1]))
         self.entries.append(entry)
     
     def _entype(self, raw):
