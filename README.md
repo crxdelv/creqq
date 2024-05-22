@@ -1,4 +1,4 @@
-# creqq
+# CreQQ
 Lightweight and working API for fetching synchronized lyrics, powered by QQ Music.
 
 ```py
