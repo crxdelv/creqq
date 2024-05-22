@@ -50,18 +50,24 @@ class CreQQ:
           self.offset = float(enval)
         elif entype.isnumeric():
           self.lyrics.append(CreQQ.Lyric(entype, enval, entry[1]))
-        self.entries.append(entry)
+        if entype != None: self.entries.append(entry)
     
     def _entype(self, raw):
-      end = re.search(r'\[.*?\:', raw).end()
+      m = re.search(r'\[.*?\:', raw)
+      if m == None: return
+      end = m.end()
       return raw[1:end - 1]
     
     def _enval(self, raw):
-      end = re.search(r'\[.*?\:', raw).end()
+      m = re.search(r'\[.*?\:', raw)
+      if m == None: return
+      end = m.end()
       return raw[end:len(raw) - 1]
     
     def _entry(self, raw):
-      end = re.search(r'\[.*?\:.*?\]', raw).end()
+      m = re.search(r'\[.*?\:.*?\]', raw)
+      if m == None: return
+      end = m.end()
       key = raw[0:end]
       value = raw[end:]
       return [key, value]
