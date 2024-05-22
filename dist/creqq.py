@@ -48,7 +48,7 @@ class CreQQ:
           self.artist = enval
         elif entype == 'offset':
           self.offset = float(enval)
-        elif entype.isnumeric():
+        elif entype != None and entype.isnumeric():
           self.lyrics.append(CreQQ.Lyric(entype, enval, entry[1]))
         if entype != None: self.entries.append(entry)
     
