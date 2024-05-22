@@ -20,7 +20,7 @@ class CreQQ:
   
   class Lyric:
     def __init__(self, min, sec, line):
-      self.raw = f'[{min}:{sec}] {line}'
+      self.raw = f'[{min}:{sec}]{line}'
       self.text = line
       self.timestamp = int(min) * 60
       self.timestamp += float(sec)
