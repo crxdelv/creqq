@@ -7,7 +7,7 @@ class CreQQ:
   class Track:
     def __init__(self, parsed):
       self.id = parsed['songmid']
-      self.track = parsed['songname']
+      self.title = parsed['songname']
       self.album = parsed['albumname']
       self.artist = parsed['singer'][0]['name']
     
