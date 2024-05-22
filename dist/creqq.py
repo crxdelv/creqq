@@ -38,6 +38,7 @@ class CreQQ:
       lines = raw.split('\n')
       for line in lines:
         entry = self._entry(line)
+        if entry == None: continue
         entype = self._entype(entry[0])
         enval = self._enval(entry[0])
         if entype == 'ti':
@@ -48,19 +49,17 @@ class CreQQ:
           self.artist = enval
         elif entype == 'offset':
           self.offset = float(enval)
-        elif entype != None and entype.isnumeric():
+        elif entype.isnumeric():
           self.lyrics.append(CreQQ.Lyric(entype, enval, entry[1]))
-        if entype != None: self.entries.append(entry)
+        self.entries.append(entry)
     
     def _entype(self, raw):
       m = re.search(r'\[.*?\:', raw)
-      if m == None: return
       end = m.end()
       return raw[1:end - 1]
     
     def _enval(self, raw):
       m = re.search(r'\[.*?\:', raw)
-      if m == None: return
       end = m.end()
       return raw[end:len(raw) - 1]
     
