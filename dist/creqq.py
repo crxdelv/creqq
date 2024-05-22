@@ -63,7 +63,7 @@ class CreQQ:
     def _entry(self, raw):
       end = re.search(r'\[.*?\:.*?\]', raw).end()
       key = raw[0:end]
-      value = raw[end:len(raw)]
+      value = raw[end:]
       return [key, value]
   
   def search(self, term):
