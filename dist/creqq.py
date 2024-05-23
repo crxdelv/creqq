@@ -36,6 +36,7 @@ class CreQQ:
       self.album = None
       self.lyrics = []
       lines = raw.split('\n')
+      skipped = False
       for line in lines:
         entry = self._entry(line)
         if entry == None: continue
@@ -50,6 +51,12 @@ class CreQQ:
         elif entype == 'offset':
           self.offset = float(enval)
         elif entype.isnumeric():
+          # skip the first line
+          if not skipped:
+            skipped = True
+            continue
+          # skip the credits
+          if '\uff1a' in enval: continue
           self.lyrics.append(CreQQ.Lyric(entype, enval, entry[1]))
         self.entries.append(entry)
     
