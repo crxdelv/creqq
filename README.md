@@ -8,8 +8,8 @@ queries = CreQQ().search('BLUE Billie Eilish')
 # Get the metadata of the first song
 metadata = queries[0].get_metadata()
 
-# Print the 6th line of the lyrics
-print(metadata.lyrics[5].raw)
+# Print the 2nd line of the lyrics
+print(metadata.lyrics[1].raw)
 
 # Output:
 # [00:11.26]I try to live in black and white but I'm so blue
@@ -24,7 +24,7 @@ from creqq import CreQQ
 
 # Documentation
 
-### class `CreQQ`
+## class `CreQQ`
 This class includes 3 subclasses and 1 method.
 
 #### method `search(keyword: str) -> list`
@@ -35,7 +35,7 @@ queries = CreQQ().search('BLUE Billie Eilish')
 # Returns a list of CreQQ.Track instances
 ```
 
-### class `CreQQ.Track`
+## class `CreQQ.Track`
 This subclass includes 1 method, and 3 properties&ndash;the track title, album name, and the artist name. 
 
 ```py
@@ -58,7 +58,7 @@ metadata = queries[0].get_metadata()
 # Returns an instance of CreQQ.Metadata
 ```
 
-### class `CreQQ.Metadata`
+## class `CreQQ.Metadata`
 This subclass is just like the `CreQQ.Track` class, but with additional properties&ndash;the lyrics and the offset value (in seconds).
 
 > [!NOTE]
@@ -83,17 +83,17 @@ lyrics = metadata.lyrics
 
 `metadata.lyrics` is a lyrically-ordered list of `CreQQ.Lyric` instances.
 
-### class `CreQQ.Lyric`
+## class `CreQQ.Lyric`
 
 This subclass is a single line of the track's lyrics including 3 properties&ndash;the timestamp (in milliseconds), text, and its raw value.
 
 ```py
-print(lyrics[5].text)
+print(lyrics[1].text)
 # "I try to live in black and white but I'm so blue"
 
-print(lyrics[5].timestamp)
+print(lyrics[1].timestamp)
 # 11260
 
-print(lyrics[5].raw)
+print(lyrics[1].raw)
 # "[00:11.26]I try to live in black and white but I'm so blue"
 ```
