@@ -1,7 +1,4 @@
-import requests
-import base64
-import json
-import re
+import requests, base64, json, re
 
 class CreQQ:
   class Track:
@@ -56,7 +53,7 @@ class CreQQ:
             skipped = True
             continue
           # skip the credits
-          if '\uff1a' in enval: continue
+          if '\uff1a' in entry[1]: continue
           self.lyrics.append(CreQQ.Lyric(entype, enval, entry[1]))
         self.entries.append(entry)
     
