@@ -3,7 +3,7 @@ Lightweight and working API for fetching synchronized lyrics, powered by QQ Musi
 
 | Branch `album` |
 |:--------------:|
-| This branch includes a single method that focuses on album tracks |
+| This branch includes a subclass that focuses on album tracks |
 
 ```py
 # Search for a song
