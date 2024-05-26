@@ -22,6 +22,9 @@ Download the file [`creqq.py`](https://github.com/creuserr/creqq/blob/main/dist/
 from creqq import CreQQ
 ```
 
+> [!NOTE]
+> This library uses the dependency `requests`.
+
 # Documentation
 
 ## class `CreQQ`
