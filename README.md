@@ -1,6 +1,10 @@
 # CreQQ
 Lightweight and working API for fetching synchronized lyrics, powered by QQ Music.
 
+| Branch `album` |
+|:--------------:|
+| This branch includes a single method that focuses on album tracks |
+
 ```py
 # Search for a song
 queries = CreQQ().search('BLUE Billie Eilish')
