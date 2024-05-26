@@ -4,6 +4,7 @@ class CreQQ:
   class Track:
     def __init__(self, parsed):
       self.id = parsed['songmid']
+      self.aid = parsed['albummid']
       self.title = parsed['songname']
       self.album = parsed['albumname']
       self.artist = parsed['singer'][0]['name']
@@ -14,6 +15,20 @@ class CreQQ:
       text = res.text
       parsed = json.loads(text[18:len(text) - 1])
       return CreQQ.Metadata(base64.b64decode(str.encode(parsed['lyric'])).decode('utf-8'))
+    
+    def get_album():
+      res = requests.get('https://c.y.qq.com/v8/fcg-bin/fcg_v8_album_info_cp.fcg?albummid=' + self.aid)
+  
+  class Album:
+    def __init__(self, parsed):
+      self.company = parsed['company']
+      self.date = parsed['aDate']
+      self.artist = parsed['singername']
+      self.title = parsed['name']
+      self.color = hex(parsed['color']).replace('0x', '#')
+      self.tracks = []
+      for track in parsed['list']:
+        tracks.append(CreQQ.Track(track))
   
   class Lyric:
     def __init__(self, min, sec, line):
@@ -23,9 +38,6 @@ class CreQQ:
       self.timestamp += float(sec)
       self.timestamp *= 1000
       self.timestamp = int(self.timestamp)
-  
-  class Album:
-    def __init
   
   class Metadata:
     def __init__(self, raw):
