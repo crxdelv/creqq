@@ -18,6 +18,7 @@ class CreQQ:
     
     def get_album():
       res = requests.get('https://c.y.qq.com/v8/fcg-bin/fcg_v8_album_info_cp.fcg?albummid=' + self.aid)
+      return CreQQ.Album(json.loads(text))
   
   class Album:
     def __init__(self, parsed):
