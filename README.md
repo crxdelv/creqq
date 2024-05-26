@@ -122,15 +122,20 @@ print(album.company)
 print(album.date)
 # "2024-05-17"
 
-print(date.title)
+print(album.title)
 # "HIT ME SOFT AND HARD"
 
-print(date.artist)
+print(album.artist)
 # "Billie Eilish"
 
-print(date.color)
+print(album.color)
 # "#20"
+# The actual color is "#000020"
+# For more information, please read the note below
 
-print(date.tracks)
+print(album.tracks)
 # Returns a list of CreQQ.Track instances
 ```
+
+#### `album.color` footnote <kbd>exclusive</kbd>
+The color property can rarely include a non-standard hex value. There is no way to correct this, but there are some workaround methods.
