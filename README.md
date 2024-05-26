@@ -57,6 +57,10 @@ print(queries[0].album)
 
 This method will return the metadata of the track.
 
+#### method `get_album() -> QreQQ.Album` <kbd>exclusive</kbd>
+
+This method will return the album instance of the track.
+
 ```py
 metadata = queries[0].get_metadata()
 # Returns an instance of CreQQ.Metadata
@@ -100,4 +104,28 @@ print(lyrics[1].timestamp)
 
 print(lyrics[1].raw)
 # "[00:11.26]I try to live in black and white but I'm so blue"
+```
+
+## class `CreQQ.Album` <kbd>exclusive</kbd>
+
+This subclass&ndash;exclusive on `album` branch&ndash;includes 6 properties.
+
+```py
+print(album.company)
+# "Darkroom/Interscope Records"
+
+print(album.date)
+# "2024-05-17"
+
+print(date.title)
+# "HIT ME SOFT AND HARD"
+
+print(date.artist)
+# "Billie Eilish"
+
+print(date.color)
+# "#20"
+
+print(date.tracks)
+# Returns a list of CreQQ.Track instances
 ```
