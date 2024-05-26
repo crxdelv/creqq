@@ -57,13 +57,18 @@ print(queries[0].album)
 
 This method will return the metadata of the track.
 
+```py
+metadata = queries[0].get_metadata()
+# Returns an instance of CreQQ.Metadata
+```
+
 #### method `get_album() -> QreQQ.Album` <kbd>exclusive</kbd>
 
 This method will return the album instance of the track.
 
 ```py
-metadata = queries[0].get_metadata()
-# Returns an instance of CreQQ.Metadata
+album = queries[0].get_album()
+# Returns an instance of CreQQ.Album
 ```
 
 ## class `CreQQ.Metadata`
