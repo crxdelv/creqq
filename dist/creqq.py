@@ -24,6 +24,9 @@ class CreQQ:
       self.timestamp *= 1000
       self.timestamp = int(self.timestamp)
   
+  class Album:
+    def __init
+  
   class Metadata:
     def __init__(self, raw):
       self.raw = raw
