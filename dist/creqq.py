@@ -47,6 +47,7 @@ class CreQQ:
       self.title = None
       self.artist = None
       self.album = None
+      self.offset = None
       self.lyrics = []
       lines = raw.split('\n')
       skipped = False
