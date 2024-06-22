@@ -1,3 +1,7 @@
+| Use `crespot` instead :headphones: |
+|:---------------------:|
+| For more data regarding the albums, use `crespot` instead. |
+
 # CreQQ
 Lightweight and working API for fetching synchronized lyrics, powered by QQ Music.
 
