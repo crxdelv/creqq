@@ -25,6 +25,110 @@ from creqq import CreQQ
 > [!NOTE]
 > This library uses the dependency `requests`.
 
+# REST API
+
+```http
+GET https://creqq-api.vercel.app/<SEARCH-QUERY>/<SEARCH-INDEX>
+```
+
+[Try it online!](https://reqbin.com/1umgymx1)
+
+## Parameters
+
+**Search Query** <br>
+This is the search query for searching the song lyrics. It is recommended to also include the artist name for precise result.h
+
+**Search Index** <br>
+When searching, it can return a bunch of songs. Search index is used to select which song to return. It is zero by default and can be undefined.
+
+***
+
+`offset` is the offset start of the lyrics by seconds. If the offset is 2 seconds, then you need to manually adjust the lyrics.
+
+`total` is the total amount of songs that has been retrieved when searching.
+
+`index` is the number of which song index is returned. It is basically search index but with +1.
+
+`timestamp` is the milliseconds timestamp of a lyric line.
+
+## Response Schema
+
+### 200 Success
+```http
+GET https://creqq-api.vercel.app/i%20can%20see%20you%20taylor
+
+{
+  "title": "I Can See You (Taylor's Version|From The Vault)",
+  "artist": "Taylor Swift",
+  "offset": 0,
+  "total": 10,
+  "index": 0,
+  "lyrics": [{
+      "timestamp": 16470,
+      "text": "You brush past me in the hallway"
+  }, "..."],
+  "success": true
+}
+```
+
+### 400 Bad Request
+
+`INCOMPLETE_PARAM` occurs if no parameter is provided.
+```http
+GET https://creqq-api.vercel.app/
+{
+  "error": "INCOMPLETE_PARAM"
+  "success": false
+}
+```
+
+`INVALID_PARAM` occurs if the search index is not a valid number.
+```http
+GET https://creqq-api.vercel.app/i%20can%20see%20you%20taylor/not-a-number
+
+{
+  "error": "INVALID_PARAM"
+  "success": false
+}
+```
+
+### 404 Not Found
+
+`NOT_FOUND` occurs when either the search query doesn't return a single song, or the index is out of bounds.
+```http
+GET https://creqq-api.vercel.app/gajsjsjauwhsja
+
+{
+  "error": "NOT_FOUND"
+  "success": false
+}
+```
+
+`NO_METADATA_FOUND` occurs when a song exists but doesn't have a lyrics.
+
+> [!NOTE]
+> The metadata includes all the data including the title and the artist.
+
+```http
+GET https://creqq-api.vercel.app/i%20can%20see%20you%20taylor/3
+{
+  "error": "NO_METADATA_FOUND"
+  "success": false
+}
+```
+
+### 500 Internal Error
+
+`INTERNAL_ERROR` occurs when the process raised an error.
+```json
+{
+  "error": "INTERNAL_ERROR",
+  "message": "...",
+  "traceback": "...",
+  "success": false
+}
+```
+
 # Documentation
 
 ## class `CreQQ`
